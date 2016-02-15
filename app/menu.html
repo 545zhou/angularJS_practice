@@ -29,7 +29,7 @@
         <div class="row row-content" ng-controller="menuController as menuCtrl">
             <div class="col-xs-12">
                 <div class="tab-content">
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs media-list tab-pane fade in active" role="tablist">
                         <li role="presentation"
                          ng-class="{active:menuCtrl.isSelected(1)}">
                         <a ng-click="menuCtrl.select(1)"
@@ -66,6 +66,9 @@
                          <span class="label label-danger">{{dish.label}}</span>
                          <span class="badge">{{dish.price | currency}}</span></h2>
                         <p>{{dish.description}}</p>
+                        <p>Comment: {{dish.comment}}</p>
+                        <p>Type your comment:
+                         <input type="text" ng-model="dish.comment"></p>
                     </div>
                 </li>
                </ul>
@@ -93,7 +96,7 @@
                 else
                     this.filtText = "";
             }
-            
+
             this.isSelected = function (checkTab) {
                 return (this.tab === checkTab);
             }
