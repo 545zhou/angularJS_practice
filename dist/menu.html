@@ -31,9 +31,7 @@
         <div class="row row-content" ng-controller="MenuController">
             <div class="col-xs-12">
                 <div class="tab-content">
-                    <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right" type="button">
-                    {{showDetails ? 'Hide Details':'Show Details'}}
-                    </button>  
+                    
                     <ul class="nav nav-tabs media-list tab-pane fade in active" role="tablist">
                         <li role="presentation"
                          ng-class="{active:isSelected(1)}">
@@ -57,7 +55,9 @@
                          role="tab">Desserts</a></li>
                     </ul>
                 </div>
-
+                <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right" type="button">
+                    {{showDetails ? 'Hide Details':'Show Details'}}
+                    </button>  
                <ul class="media-list">
                 <li class="media" ng-repeat="dish in dishes | filter:filtText">
                     <div class="media-left media-middle">
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    <script src="scripts/main-63a809efef.js"></script>
+    <script src="scripts/main-c1fc1e49e8.js"></script>
 </body>
 
 </html>
