@@ -172,8 +172,5 @@ angular.module('confusionApp', [])
      $scope.usrComment = {author: '', rating: 5, comment: '', date: ''};
      $scope.commentForm.$setPristine();
      $scope.preComment = $scope.usrComment;
-     
-
-
   };
 }])
