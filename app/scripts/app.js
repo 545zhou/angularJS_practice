@@ -154,9 +154,8 @@ angular.module('confusionApp', [])
 
 .controller('DishCommentController', ['$scope', function($scope) {
 
+  //Step 1: Create a JavaScript object to hold the comment from the form
   $scope.usrComment = {author: '', rating: 5, comment: '', date: ''}; 
-   //Step 1: Create a JavaScript object to hold the comment from the form
-  $scope.preComment = $scope.usrComment;
 
   $scope.submitComment = function () {
 
@@ -171,6 +170,5 @@ angular.module('confusionApp', [])
      $scope.dish.comments.push($scope.usrComment);
      $scope.usrComment = {author: '', rating: 5, comment: '', date: ''};
      $scope.commentForm.$setPristine();
-     $scope.preComment = $scope.usrComment;
   };
 }])
