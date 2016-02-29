@@ -1,0 +1,103 @@
+<div class="container">
+	<div class="row row-content" ng-controller="DishDetailController">
+		<div class="col-xs-12">
+			<div class = "media">
+				<div class="media-left media-middle">
+					<a href="#">
+						<img class="media-object img-thumbnail"
+						ng-src={{dish.image}} alt="Uthappizza">
+					</a>
+				</div>
+				<div class="media-body">
+					<h2 class="media-heading">{{dish.name}}
+						<span class="label label-danger">{{dish.label}}</span>
+						<span class="badge">{{dish.price | currency}}</span></h2>
+						<p>{{dish.description}}</p>
+					</div>
+				</div>               
+			</div>
+			<div class="col-xs-9 col-xs-offset-1">
+				<div>
+					<h3>Customer Comments
+						<span style = "color:gray; font-size: medium">Sort by: <input type="text" ng-model="comment.sort"></span>
+					</h3>
+				</div>
+				<ul class = "list-unstyled">
+					<li ng-repeat = "comment in dish.comments | orderBy:comment.sort">
+						<blockquote>
+							<p>{{comment.rating}} star</p>
+							<p>{{comment.comment}}</p>
+							<footer>{{comment.author}}, {{comment.date | date:'MMM. dd, yyyy'}}</footer>
+						</blockquote>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
+				<ul class="list-unstyled">
+					<li ng-repeat = "comment in dishCtrl.dish.comments | orderBy:comment.sort">
+						<blockquote>
+							<p>{{comment.rating}} star</p>
+							<p>{{comment.comment}}</p>
+							<footer>{{comment.author}}, {{comment.date | date:'MMM. dd, yyyy'}}</footer>
+						</blockquote>
+					</li>
+					<li >
+						<blockquote ng-show="commentForm.$valid">
+							<p>{{usrComment.rating}} star</p>
+							<p>{{usrComment.comment}}</p>
+							<footer>{{usrComment.author}}, {{usrComment.date | date:'MMM. dd, yyyy'}}</footer>
+						</blockquote>
+					</li>
+				</ul>
+				<form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
+					<div class="form-group" ng-class="{ 'has-error' : commentForm.name.$error.required && !commentForm.name.$pristine }">
+						<label for="name" class="col-sm-2 control-label">Your Name</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" ng-model="usrComment.author" required>
+							<span ng-show="commentForm.name.$error.required && !commentForm.name.$pristine" class="help-block">Your name is required.</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="rating" class="col-sm-2 control-label">Number of Stars</label>
+						<div class = "col-sm-10">
+							<label class="radio-inline">
+								<input type="radio" ng-model="usrComment.rating" value=1 /> 1 
+							</label>
+							<label class="radio-inline">
+								<input type="radio" ng-model="usrComment.rating" value=2 /> 2 
+							</label>
+							<label class="radio-inline">
+								<input type="radio" ng-model="usrComment.rating" value=3 /> 3 
+							</label>
+							<label class="radio-inline">
+								<input type="radio" ng-model="usrComment.rating" value=4 /> 4 
+							</label>
+							<label class="radio-inline">
+								<input type="radio" ng-model="usrComment.rating" value=5 /> 5 <br/>
+							</label>
+						</div>
+					</div>                
+					<div class="form-group" ng-class="{ 'has-error' : commentForm.comment.$error.required && !commentForm.comment.$pristine }">
+						<label for="comment" class="col-sm-2 control-label" >Your Comments</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="12" name="comment" placeholder="Enter Your Comments" required
+							ng-model="usrComment.comment">
+						</textarea>
+						<span ng-show="commentForm.comment.$error.required && !commentForm.comment.$pristine" class="help-block">Your comments are required.</span>
+					</div>
+				</div> 
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary" ng-disabled="commentForm.$invalid">Send Comment</button>
+					</div>
+				</div>
+				<div class="col-xs-12">
+	                <button class="btn btn-xs btn-primary pull-right"
+	                    type="button" ui-sref="app.menu">
+	                    Back to Menu
+	                </button>
+                <div class="media">
+			</form>
+		</div>
+	</div>
+</div>
